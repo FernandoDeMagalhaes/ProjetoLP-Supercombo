@@ -44,4 +44,7 @@ premios = [0,0,0,1,0,0]
 
 #Criação do DataFrame propriamente dito 
 df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching, 'Awards': premios})
-df.to_csv('supercombo.csv', index=False, encoding='utf-8')    
+df.to_csv('supercombo.csv', index=False, encoding='utf-8')
+
+#Fechar a janela
+driver.quit()    
