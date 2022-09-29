@@ -19,23 +19,20 @@ driver.get('https://www.vagalume.com.br/supercombo/discografia/')
 content = driver.page_source
 soup = BeautifulSoup(content)
 for a in soup.find_all('div', attrs={'class':'topLetrasWrapper'}):
-    
-    musics_album = []
-    
     name_album = a.find('h3', attrs={'class':'albumTitle'}).get_text(strip=True)
-    for b in soup.find_all('div', attrs = {'class': 'lineColLeft'}): 
-        name_musics = b.find('a', href = True, attrs={'class':'nameMusic'}).get_text(strip=True)
-        musics_album.append(name_musics)
-    # year = a.find('p', attrs={'class':'AlbumYear'}).get_text(strip=True)
-    musics.append(musics_album)
     albums.append(name_album)
-    
-    # yearlaunching.append(year)
-    # print(name_album)
-# print(yearlaunching, "a")
+
+for b in soup.find_all('ol', attrs = {'id':'topMusicList'}):
+    name_musics = b.find_all('a', href = True, attrs={'class':'nameMusic'})
+    musics.append(name_musics)
+
+for c in soup.find_all('div', attrs = {'class': 'cardAlbumInfos'}): 
+    year = c.find('p', attrs={'class':'albumYear'}).get_text(strip=True)
+    yearlaunching.append(year)
+
 print(albums, "a")  
 print(musics, "a")
-# print(yearlaunching, "a")    
+print(yearlaunching, "a")    
 
-# df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching})
-# df.to_csv('supercombo.csv', index=False, encoding='utf-8')    
+df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching})
+df.to_csv('supercombo.csv', index=False, encoding='utf-8')    
