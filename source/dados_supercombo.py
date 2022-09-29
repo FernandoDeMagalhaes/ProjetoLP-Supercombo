@@ -38,8 +38,10 @@ for b in soup.find_all('ol', attrs = {'id':'topMusicList'}):
 #Extrai o ano dos álbums e cria uma lista com eles
 for c in soup.find_all('div', attrs = {'class': 'cardAlbumInfos'}): 
     year = c.find('p', attrs={'class':'albumYear'}).get_text(strip=True)
-    yearlaunching.append(year)   
+    yearlaunching.append(year)
+
+premios = [0,0,0,1,0,0]
 
 #Criação do DataFrame propriamente dito 
-df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching})
+df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching, 'Awards': premios})
 df.to_csv('supercombo.csv', index=False, encoding='utf-8')    
