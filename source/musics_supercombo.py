@@ -2,6 +2,7 @@
 
 from selenium import webdriver
 from bs4 import BeautifulSoup
+import time
 import pandas as pd
 
 driver = webdriver.Chrome()
@@ -30,12 +31,24 @@ for i in lyrics_hrefs:
     links.append(i)
 #print(links)
 for a in links:
-    concat_link = 'https//:www.vagalume.com.br' + a
+    concat_link = 'https://www.vagalume.com.br' + a
+    print(concat_link)
     driver.get(concat_link)
     content = driver.page_source
+    time.sleep(1)
     soup = BeautifulSoup(content)
-    music_lyric = soup.find_all('div', attrs ={'id':'lyrics'})    
-    lyrics.append(music_lyric)    #print(musics_clear)
+    music_lyric = soup.find_all('div', attrs ={'id':'lyrics'}) 
+    
+    lyric_clear = []
+    
+    for a1 in music_lyric:
+        a1 = a1.get_text(" ", strip=True)
+        lyric_clear.append(a1)
+    
+    lyrics.append(lyric_clear)    #print(musics_clear)
+    
 print(lyrics)
 
+time = [166,201]
+popularity =[681149,542702]
 # driver.quit()
