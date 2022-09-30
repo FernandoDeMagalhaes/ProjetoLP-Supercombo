@@ -40,10 +40,14 @@ for c in soup.find_all('div', attrs = {'class': 'cardAlbumInfos'}):
     year = c.find('p', attrs={'class':'albumYear'}).get_text(strip=True)
     yearlaunching.append(year)
 
+#Prêmios(feitos à mão.)
 premios = [0,0,0,1,0,0]
 
+#Gravadoras(feitas à mão.)
+grav = ["Gritaria","Elemess","Elemess","Lua Music","Sem gravadora","Sem gravadora"]
+
 #Criação do DataFrame propriamente dito 
-df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching, 'Awards': premios})
+df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching, 'Awards': premios, 'Recorders': grav})
 df.to_csv('supercombo.csv', index=False, encoding='utf-8')
 
 #Fechar a janela
