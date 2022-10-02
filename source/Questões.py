@@ -1,8 +1,44 @@
 import numpy as np
 import pandas as pd
 
+
+# Função pra tirar texto entre parênteses
+def ignorar_caracteres_cercados(texto, char_abertura, char_fechamento):
+    profundidade = 0
+    novo_texto = ''
+
+    for c in texto:
+        if c == char_abertura:
+            profundidade += 1
+        elif c == char_fechamento:
+            profundidade -= 1
+            if profundidade < 0:
+                raise Exception('Cercamento não balanceado')
+        elif profundidade == 0:
+            novo_texto += c
+
+    if profundidade > 0:
+        raise Exception('Cercamento não balanceado')
+
+    return novo_texto
+
+
+# def clear_string(lista):
+#     clear = []
+#     for i in lista:
+#         word = i
+#         remove = "[];:!?.,-'"
+#         for j in range(len(remove)):
+#             word = word.replace(remove[j],"")
+#         clear.append(string.upper())
+#     return clear
+
+
 df1 = pd.read_csv('supercombo.csv')
 df2 = pd.read_csv('supercombo2.csv')
+
+
+# CONJUNTO DE PERGUNTAS 1
 
 #mais longas e curtas por album:
 
@@ -115,5 +151,140 @@ for i in df_viw_album['Visualisações']:
     if i == min(df_viw_album['Visualisações']):
         print("Menos Vista: ", df_viw_album['Musica'][n4])
     n4 = n4+1
+
+print("\n")
+
+
+
+# Album mais premiado
+
+n5 = 0
+for i in df1['Awards']:
+    if i == max(df1['Awards']):
+        print("Mais premiado: ", df1['Album'][n5])
+    n5 = n5+1
+
+print("\n")
+
+
+# CONJUNTO DE PERGUNTAS 2
+
+# Palavras mais repetidas nos titulos dos albums
+
+stringclear = []
+
+for i in df1['Album']:
+    string = i
+    remove = "[];:!?.,'"
+    for j in range(len(remove)):
+        string = string.replace(remove[j],"")
+    stringclear.append(string.upper())
+
+bigstring = ""
+
+for i in stringclear:
+    bigstring = bigstring + " " + i
+
+palavras = bigstring.split()
+
+uniqWord = []
+for i in palavras:
+    if i not in uniqWord:
+        uniqWord.append(i)
+
+contagem = []
+for i in uniqWord:
+    contagem.append(bigstring.count(i))
+
+df_contagem_album = pd.DataFrame({"Palavra": uniqWord, "Contagem": contagem})
+
+print(df_contagem_album.sort_values(by = 'Contagem', ascending = False).head(3))
+
+print("\n")
+
+
+# Palavras mais repetidas nos titulos da músicas
+
+stringclear = []
+
+for i in df2['Music']:
+    string = i
+    remove = "[];:!?.,'"
+    for j in range(len(remove)):
+        string = string.replace(remove[j],"")
+    stringclear.append(string.upper())
+
+bigstring = ""
+
+for i in stringclear:
+    bigstring = bigstring + " " + i
+
+bigstring = ignorar_caracteres_cercados(bigstring, '(', ')')
+
+palavras = bigstring.split()
+
+uniqWord = []
+for i in palavras:
+    if i not in uniqWord:
+        uniqWord.append(i)
+
+remover = ['A','O','E','DA','DE','EU','AS','SE','DO','NA']
+
+for i in remover:
+    uniqWord.remove(i)
+
+contagem = []
+for i in uniqWord:
+    contagem.append(bigstring.count(i))
+
+df_contagem_album = pd.DataFrame({"Palavra": uniqWord, "Contagem": contagem})
+
+print(df_contagem_album.sort_values(by = 'Contagem', ascending = False).head(5))
+
+print("\n")
+
+
+# Palavras mais comuns nas letras em toda a discografia
+
+stringclear = []
+
+for i in df2['Lyrics']:
+    string = i
+    remove = "[];:!?.,'-"
+    for j in range(len(remove)):
+        string = string.replace(remove[j],"")
+    stringclear.append(string.upper())
+
+bigstring = ""
+
+for i in stringclear:
+    bigstring = bigstring + " " + i
+
+bigstring = bigstring.replace("("," ")
+bigstring = bigstring.replace(")"," ")
+
+palavras = bigstring.split()
+
+uniqWord = []
+for i in palavras:
+    if i not in uniqWord:
+        uniqWord.append(i)
+        
+remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
+           'É','NÃO','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
+           'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
+           'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','POR','MAIS','FAZ','PRO',
+           'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE','ELA']
+
+for i in remover:
+    uniqWord.remove(i)
+
+contagem = []
+for i in uniqWord:
+    contagem.append(bigstring.count(i))
+
+df_contagem_letra = pd.DataFrame({"Palavra": uniqWord, "Contagem": contagem})
+
+print(df_contagem_letra.sort_values(by = 'Contagem', ascending = False).head(10))
 
 print("\n")
