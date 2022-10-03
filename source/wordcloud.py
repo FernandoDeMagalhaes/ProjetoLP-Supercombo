@@ -9,3 +9,6 @@ import dados_supercombo as dsc
 musics = df.dropna(['Music'])
 all_musics = ''.join(m for m in musics)
 
+stopwords = set(STOPWORDS)
+stopwords.update((['o','a','os' 'as','dos']))
+
