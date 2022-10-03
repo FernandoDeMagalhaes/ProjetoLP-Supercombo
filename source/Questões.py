@@ -231,7 +231,10 @@ for i in palavras:
 remover = ['A','O','E','DA','DE','EU','AS','SE','DO','NA']
 
 for i in remover:
-    uniqWord.remove(i)
+    try:
+        uniqWord.remove(i)
+    except:
+        pass
 
 contagem = []
 for i in uniqWord:
@@ -274,10 +277,14 @@ remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
            'É','NÃO','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
            'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
            'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','POR','MAIS','FAZ','PRO',
-           'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE','ELA']
+           'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
+           'ELA','QUER','COMO','QUANDO','MINHA','QUEM']
 
 for i in remover:
-    uniqWord.remove(i)
+    try:
+        uniqWord.remove(i)
+    except:
+        pass
 
 contagem = []
 for i in uniqWord:
@@ -288,3 +295,96 @@ df_contagem_letra = pd.DataFrame({"Palavra": uniqWord, "Contagem": contagem})
 print(df_contagem_letra.sort_values(by = 'Contagem', ascending = False).head(10))
 
 print("\n")
+
+# Palavras mais comuns nas letras por album
+
+musicas = df2['Music']
+albuns = []
+letras = []
+
+m1 = 0
+for i in musicas:
+    n1 = 0
+    for j in df1['Music']:
+        if i in j:
+            albuns.append(df1['Album'][n1])
+        n1 = n1+1
+    letras.append(df2['Lyrics'][m1])
+    m1 = m1 + 1
+    
+df_lyric_album = pd.DataFrame({'Album': albuns, 'Musica': musicas, 'Letras': letras})
+
+liricList = []
+
+for i in df1['Album']:
+    liric = []
+    m7 = 0
+    for j in df2['Lyrics']:
+        if (i == df_lyric_album['Album'][m7]):
+            liric.append(df_lyric_album['Letras'][m7])
+        m7 = m7+1
+    liricList.append(liric)
+
+stringclearList = []
+
+for j in liricList:
+    stringclear = []
+    for i in j:
+        string = i
+        remove = "[];:!?.,'-"
+        for k in range(len(remove)):
+            string = string.replace(remove[k],"")
+        stringclear.append(string.upper())
+    
+    stringclearList.append(stringclear)
+
+contagemList = []
+uniqWordList = []
+
+for i in stringclearList:
+    bigstring = ""
+
+    for j in i:
+        bigstring = bigstring + " " + j
+
+    bigstring = bigstring.replace("("," ")
+    bigstring = bigstring.replace(")"," ")
+
+    palavras = bigstring.split()
+    
+    uniqWord = []
+    for k in palavras:
+        if k not in uniqWord:
+            uniqWord.append(k)
+    
+    remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
+               'É','NÃO','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
+               'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
+               'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','POR','MAIS','FAZ','PRO',
+               'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
+               'ELA','QUER','COMO','QUANDO','MINHA','QUEM', 'OH', 'FOR', 'DEVE', 'TÁ', 'AÍ',
+               'TÃO', 'AAAAA', 'MIM', 'WAAAA', 'OOO', 'UOOO', 'AAAAAH', 'JÁ']
+
+    for i in remover:
+        try:
+            uniqWord.remove(i)
+        except:
+            pass
+    
+    uniqWordList.append(uniqWord)
+            
+    contagem = []
+    for l in uniqWord:
+        contagem.append(bigstring.count(l))
+    
+    contagemList.append(contagem)
+
+n9 = 0
+for i in df1['Album']:
+    df_contagem_letra_album = pd.DataFrame({"Palavra": uniqWordList[n9], "Contagem": contagemList[n9]})
+    
+    print(i, "\n")
+    print(df_contagem_letra_album.sort_values(by = 'Contagem', ascending = False).head(10))
+    print("\n")
+    
+    n9 = n9 + 1
