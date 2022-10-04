@@ -1,8 +1,8 @@
-import numpy as np
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
-from PIL import Image
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+from wordcloud import WordCloud
+#from PIL import image
 
 # Função pra tirar texto entre parênteses
 def ignorar_caracteres_cercados(texto, char_abertura, char_fechamento):
@@ -24,9 +24,9 @@ def ignorar_caracteres_cercados(texto, char_abertura, char_fechamento):
 
     return novo_texto
 
-
-df1 = pd.read_csv('supercombo.csv')
-df2 = pd.read_csv('supercombo2.csv')
+#Leitura de arquivo (deve ser necessário ver se funciona em outro PC)
+df1 = pd.read_csv(r'C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\dataframes\supercombo.csv')
+df2 = pd.read_csv(r'C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\dataframes\supercombo2.csv')
 
 
 # CONJUNTO DE PERGUNTAS 1
@@ -272,7 +272,7 @@ fig, ax = plt.subplots(figsize=(10,6))
 ax.imshow(wordcloud_titulo_album, interpolation='bilinear')
 ax.set_axis_off()
 plt.imshow(wordcloud_titulo_album);
-wordcloud_titulo_album.to_file("palavras_titulos_albuns.png")
+wordcloud_titulo_album.to_file(r"C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\images"+"\palavras_titulos_albuns.png")
 
 
 # Palavras mais comuns nas letras em toda a discografia
@@ -341,7 +341,7 @@ fig, ax = plt.subplots(figsize=(10,6))
 ax.imshow(wordcloud_discografia, interpolation='bilinear')
 ax.set_axis_off()
 plt.imshow(wordcloud_discografia);
-wordcloud_discografia.to_file("palavras_discografia.png")
+wordcloud_discografia.to_file(r"C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\images"+"\palavras_discografia.png")
 
 # Palavras mais comuns nas letras por album
 
@@ -448,7 +448,7 @@ for i in df1['Album']:
     ax.imshow(wordcloud_album, interpolation='bilinear')
     ax.set_axis_off()
     plt.imshow(wordcloud_album);
-    wordcloud_album.to_file("palavras_album_" + str(n9) + ".png")
+    wordcloud_album.to_file(r"C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\images"+"\palavras_album_" + str(n9) + ".png") 
     
     n9 += 1
 
@@ -459,5 +459,5 @@ for i in df1['Album']:
 print("Média do tempo das músicas na discografia: ", round(df2['Time'].mean(),2),'\n')
 
 #Gravadora mais comum, com número de vezes
-recorders = df1['Recorders'].value_counts().sort_values(ascending=False).head(1)
+recorders = df1['Recorders'].value_counts().sort_values(ascending = False).head(1)
 print("Gravadora mais comum e número de vezes: \n ", recorders.to_string())

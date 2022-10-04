@@ -68,4 +68,4 @@ driver.quit()
 
 #Criação do dataframe
 df = pd.DataFrame({'Music': musics_clear, 'Lyrics': lyrics, 'Time': time, 'Views': popularity})
-df.to_csv('supercombo2.csv', index=False, encoding='utf-8')
+df.to_csv('C:/Users/maxjo/OneDrive/Documentos/GitHub/ProjetoLP-Supercombo/dataframes'+'\supercombo2.csv', index=False, encoding='utf-8')
