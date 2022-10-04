@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
-
+import matplotlib.pyplot as plt
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 # Função pra tirar texto entre parênteses
 def ignorar_caracteres_cercados(texto, char_abertura, char_fechamento):
@@ -54,9 +56,9 @@ for i in musicas:
     for j in df1['Music']:
         if i in j:
             albuns.append(df1['Album'][n1])
-        n1 = n1+1
+        n1 += 1
     duracao.append(df2['Time'][m1])
-    m1 = m1+1
+    m1 += 1
 
 df_dur_album = pd.DataFrame({'Album': albuns, 'Musica': musicas, 'Duração': duracao})
 
@@ -70,10 +72,10 @@ for i in df1['Album']:
     for j in df2['Music']:
         if (i == df_dur_album['Album'][m1]):
             tempo.append(df_dur_album['Duração'][m1])
-        m1 = m1+1
+        m1 += 1
     top_tempos.append(max(tempo))   
     min_tempos.append(min(tempo))
-    n1 = n1+1
+    n1 += 1
 
 top_musics = []
 min_musics = []
@@ -120,7 +122,7 @@ for i in df1['Album']:
         m1 = m1+1
     top_viw.append(max(viw))   
     min_viw.append(min(viw))
-    n1 = n1+1
+    n1 += 1
 
 df_r_viw_album = pd.DataFrame({'Album': df1['Album'], 'Mais Visualisações': top_viw, 'Menos Visualisações': min_viw})
 
@@ -136,7 +138,7 @@ for i in df_dur_album['Duração']:
         print("Maior Música: ", df_dur_album['Musica'][n3])
     if i == min(df_dur_album['Duração']):
         print("Menor Música: ", df_dur_album['Musica'][n3])
-    n3 = n3+1
+    n3 += 1
     
 print("\n")
     
@@ -150,7 +152,7 @@ for i in df_viw_album['Visualisações']:
         print("Mais Vista: ", df_viw_album['Musica'][n4])
     if i == min(df_viw_album['Visualisações']):
         print("Menos Vista: ", df_viw_album['Musica'][n4])
-    n4 = n4+1
+    n4 += 1
 
 print("\n")
 
@@ -162,7 +164,7 @@ n5 = 0
 for i in df1['Awards']:
     if i == max(df1['Awards']):
         print("Mais premiado: ", df1['Album'][n5])
-    n5 = n5+1
+    n5 += 1
 
 print("\n")
 
@@ -242,7 +244,7 @@ for i in uniqWord:
 
 df_contagem_album = pd.DataFrame({"Palavra": uniqWord, "Contagem": contagem})
 
-print(df_contagem_album.sort_values(by = 'Contagem', ascending = False).head(5))
+print("Número \n", df_contagem_album.sort_values(by = 'Contagem', ascending = False).head(5))
 
 print("\n")
 
@@ -308,9 +310,9 @@ for i in musicas:
     for j in df1['Music']:
         if i in j:
             albuns.append(df1['Album'][n1])
-        n1 = n1+1
+        n1 += 1
     letras.append(df2['Lyrics'][m1])
-    m1 = m1 + 1
+    m1 += 1
     
 df_lyric_album = pd.DataFrame({'Album': albuns, 'Musica': musicas, 'Letras': letras})
 
@@ -322,7 +324,7 @@ for i in df1['Album']:
     for j in df2['Lyrics']:
         if (i == df_lyric_album['Album'][m7]):
             liric.append(df_lyric_album['Letras'][m7])
-        m7 = m7+1
+        m7 += 1
     liricList.append(liric)
 
 stringclearList = []
@@ -382,9 +384,16 @@ for i in stringclearList:
 n9 = 0
 for i in df1['Album']:
     df_contagem_letra_album = pd.DataFrame({"Palavra": uniqWordList[n9], "Contagem": contagemList[n9]})
-    
-    print(i, "\n")
-    print(df_contagem_letra_album.sort_values(by = 'Contagem', ascending = False).head(10))
-    print("\n")
-    
-    n9 = n9 + 1
+    print(i, "\n", df_contagem_letra_album.sort_values(by = 'Contagem', ascending = False).head(10),"\n")
+    n9 += 1
+
+#Montagem da wordcloud de palvras de toda a discografia
+
+# wordcloud_discografia = WordCloud(stopwords= uniqWord,
+#                                   background_color="black",
+#                                   width=1600, height=800).generate(uniqWord)
+# fig, ax = plt.subplots(figsize=(10,6))
+# ax.imshow(wordcloud_discografia, interpolation='bilinear')
+# ax.set_axis_off()
+# plt.imshow(wordcloud_discografia);
+# wordcloud_discografia.to_file("palvras_discografia.png")
