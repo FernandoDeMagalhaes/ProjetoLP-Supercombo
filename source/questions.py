@@ -25,17 +25,6 @@ def ignorar_caracteres_cercados(texto, char_abertura, char_fechamento):
     return novo_texto
 
 
-# def clear_string(lista):
-#     clear = []
-#     for i in lista:
-#         word = i
-#         remove = "[];:!?.,-'"
-#         for j in range(len(remove)):
-#             word = word.replace(remove[j],"")
-#         clear.append(string.upper())
-#     return clear
-
-
 df1 = pd.read_csv('supercombo.csv')
 df2 = pd.read_csv('supercombo2.csv')
 
@@ -43,8 +32,6 @@ df2 = pd.read_csv('supercombo2.csv')
 # CONJUNTO DE PERGUNTAS 1
 
 #mais longas e curtas por album:
-
-#TO DO
 
 musicas = df2['Music']
 albuns = []
@@ -62,8 +49,7 @@ for i in musicas:
 
 df_dur_album = pd.DataFrame({'Album': albuns, 'Musica': musicas, 'Duração': duracao})
 
-top_tempos = []
-min_tempos = []
+temposList = []
 
 n1 = 0
 for i in df1['Album']:
@@ -73,44 +59,49 @@ for i in df1['Album']:
         if (i == df_dur_album['Album'][m1]):
             tempo.append(df_dur_album['Duração'][m1])
         m1 += 1
-    top_tempos.append(max(tempo))   
-    min_tempos.append(min(tempo))
+    
+    temposList.append(tempo)
     n1 += 1
 
-top_musics = []
-min_musics = []
+musicList = []
 
-# for i in df1['Music']:
-#     for j in df2['Music']:
-#         if j in i:
-#             for k in listtempos:
-#                 for l in df_dur_album['Duração']:
-#                     if l == max(k):
-#                         print(j)
+n1 = 0
+for i in df1['Album']:
+    m1 = 0
+    music = []
+    for j in df2['Music']:
+        if (i == df_dur_album['Album'][m1]):
+            music.append(j)
+        m1 += 1
 
-# print(top_musics)
-# print(min_musics)
+    musicList.append(music)
+    n1 += 1
+    
+n2 = 0
+for i in df1['Album']:
+    df_tempo_album = pd.DataFrame({"Música": musicList[n2], "Tempo": temposList[n2]})
+    
+    print("Album: ", i, "\n")
+    print("Mais longas: \n", df_tempo_album.sort_values(by = 'Tempo', ascending = False).head(3), "\n", sep="")
+    print("Mais curtas: \n", df_tempo_album.sort_values(by = 'Tempo', ascending = True).head(3), sep="")
+    print("\n\n")
+    
+    n2 += 1
 
-df_r_dur_album = pd.DataFrame({'Album': df1['Album'], 'Duração Maior': top_tempos, 'Duração Menor': min_tempos})
 
-print(df_r_dur_album, "\n")
-
-
+print("--------------------------------------------------------")
 
 # Mais ouvidas e menos ouvidas por ámbum:
-
-# TO DO    
 
 visualisacoes = []
 m1 = 0
 for i in musicas:
     visualisacoes.append(df2['Views'][m1])
-    m1 = m1+1
+    m1 += 1
 
 df_viw_album = pd.DataFrame({'Album': albuns, 'Musica': musicas, 'Visualisações': visualisacoes})
 
-top_viw = []
-min_viw = []
+viwList = []
 
 n1 = 0
 for i in df1['Album']:
@@ -119,16 +110,34 @@ for i in df1['Album']:
     for j in df2['Music']:
         if (i == df_viw_album['Album'][m1]):
             viw.append(df_viw_album['Visualisações'][m1])
-        m1 = m1+1
-    top_viw.append(max(viw))   
-    min_viw.append(min(viw))
+        m1 += 1
+    viwList.append(viw)   
     n1 += 1
 
-df_r_viw_album = pd.DataFrame({'Album': df1['Album'], 'Mais Visualisações': top_viw, 'Menos Visualisações': min_viw})
+n1 = 0
+for i in df1['Album']:
+    m1 = 0
+    music = []
+    for j in df2['Music']:
+        if (i == df_dur_album['Album'][m1]):
+            music.append(j)
+        m1 += 1
 
-print(df_r_viw_album, "\n")
+    musicList.append(music)
+    n1 += 1
+    
+n2 = 0
+for i in df1['Album']:
+    df_r_viw_album = pd.DataFrame({"Música": musicList[n2], "Visualizações": viwList[n2]})
+    
+    print("Album: ", i, "\n")
+    print("Mais vistas: \n", df_r_viw_album.sort_values(by = 'Visualizações', ascending = False).head(3), "\n", sep="")
+    print("Menos vistas: \n", df_r_viw_album.sort_values(by = 'Visualizações', ascending = True).head(3), sep="")
+    print("\n\n")
+    
+    n2 += 1
 
-
+print("--------------------------------------------------------")
 
 # Mais longa e mais curta de todas
 
