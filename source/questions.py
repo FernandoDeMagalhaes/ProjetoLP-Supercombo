@@ -86,12 +86,15 @@ for i in df1['Album']:
     print("Mais curtas: \n", df_tempo_album.sort_values(by = 'Tempo', ascending = True).head(3), sep="")
     print("\n\n")
     
+    #Média do tempo das músicas por álbum:
+    print("Média de tempo de música por álbum: ",round(df_tempo_album['Tempo'].mean(),2),"\n \n")
+    
     n2 += 1
 
 
 print("--------------------------------------------------------")
 
-# Mais ouvidas e menos ouvidas por ámbum:
+# Mais ouvidas e menos ouvidas por álbum:
 
 visualisacoes = []
 m1 = 0
@@ -404,7 +407,7 @@ for i in stringclearList:
     
     remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
                'É','NÃO','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
-               'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
+               'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','AR','SI','TU','MEU',
                'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','POR','MAIS','FAZ','PRO',
                'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
                'ELA','QUER','COMO','QUANDO','MINHA','QUEM', 'OH', 'FOR', 'DEVE', 'TÁ', 'AÍ',
@@ -449,3 +452,12 @@ for i in df1['Album']:
     
     n9 += 1
 
+#Conjunto de perguntas 3 - A primeira pergunta está na parte anterior
+#(Médias do tamanho das músicas por álbum)
+
+#Média do tempo das músicas
+print("Média do tempo das músicas na discografia: ", round(df2['Time'].mean(),2),'\n')
+
+#Gravadora mais comum, com número de vezes
+recorders = df1['Recorders'].value_counts().sort_values(ascending=False).head(1)
+print("Gravadora mais comum e número de vezes: \n ", recorders.to_string())
