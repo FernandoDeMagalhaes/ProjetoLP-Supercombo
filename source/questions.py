@@ -137,7 +137,7 @@ for i in df1['Album']:
     
     n2 += 1
 
-print("--------------------------------------------------------")
+print("----" * 10)
 
 # Mais longa e mais curta de todas
 
@@ -257,6 +257,20 @@ print("Número \n", df_contagem_album.sort_values(by = 'Contagem', ascending = F
 
 print("\n")
 
+d = {}
+for a, x in df_contagem_album.values:
+    d[a] = x
+
+wordcloud_titulo_album = WordCloud(
+                                  background_color="black",
+                                  width=1600, height=800).generate(" ".join(palavras))
+wordcloud_titulo_album.generate_from_frequencies(frequencies=d)
+fig, ax = plt.subplots(figsize=(10,6))
+ax.imshow(wordcloud_titulo_album, interpolation='bilinear')
+ax.set_axis_off()
+plt.imshow(wordcloud_titulo_album);
+wordcloud_titulo_album.to_file("palavras_titulos_albuns.png")
+
 
 # Palavras mais comuns nas letras em toda a discografia
 
@@ -294,8 +308,11 @@ remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
 for i in remover:
     try:
         uniqWord.remove(i)
+        while True:
+            palavras.remove(i)
     except:
         pass
+
 
 contagem = []
 for i in uniqWord:
@@ -306,6 +323,22 @@ df_contagem_letra = pd.DataFrame({"Palavra": uniqWord, "Contagem": contagem})
 print(df_contagem_letra.sort_values(by = 'Contagem', ascending = False).head(10))
 
 print("\n")
+
+#Montagem da wordcloud de palvras de toda a discografia
+
+d = {}
+for a, x in df_contagem_letra.values:
+    d[a] = x
+
+wordcloud_discografia = WordCloud(
+                                  background_color="black",
+                                  width=1600, height=800).generate(" ".join(palavras))
+wordcloud_discografia.generate_from_frequencies(frequencies=d)
+fig, ax = plt.subplots(figsize=(10,6))
+ax.imshow(wordcloud_discografia, interpolation='bilinear')
+ax.set_axis_off()
+plt.imshow(wordcloud_discografia);
+wordcloud_discografia.to_file("palavras_discografia.png")
 
 # Palavras mais comuns nas letras por album
 
@@ -351,6 +384,7 @@ for j in liricList:
 
 contagemList = []
 uniqWordList = []
+palavrasList = []
 
 for i in stringclearList:
     bigstring = ""
@@ -379,10 +413,13 @@ for i in stringclearList:
     for i in remover:
         try:
             uniqWord.remove(i)
+            while True:
+                palavras.remove(i)
         except:
             pass
     
     uniqWordList.append(uniqWord)
+    palavrasList.append(palavras)
             
     contagem = []
     for l in uniqWord:
@@ -394,15 +431,21 @@ n9 = 0
 for i in df1['Album']:
     df_contagem_letra_album = pd.DataFrame({"Palavra": uniqWordList[n9], "Contagem": contagemList[n9]})
     print(i, "\n", df_contagem_letra_album.sort_values(by = 'Contagem', ascending = False).head(10),"\n")
+    
+    
+    d = {}
+    for a, x in df_contagem_letra_album.values:
+        d[a] = x
+
+    wordcloud_album = WordCloud(
+                                      background_color="black",
+                                      width=1600, height=800).generate(" ".join(palavrasList[n9]))
+    wordcloud_album.generate_from_frequencies(frequencies=d)
+    fig, ax = plt.subplots(figsize=(10,6))
+    ax.imshow(wordcloud_album, interpolation='bilinear')
+    ax.set_axis_off()
+    plt.imshow(wordcloud_album);
+    wordcloud_album.to_file("palavras_album_" + str(n9) + ".png")
+    
     n9 += 1
 
-#Montagem da wordcloud de palvras de toda a discografia
-
-# wordcloud_discografia = WordCloud(stopwords= uniqWord,
-#                                   background_color="black",
-#                                   width=1600, height=800).generate(uniqWord)
-# fig, ax = plt.subplots(figsize=(10,6))
-# ax.imshow(wordcloud_discografia, interpolation='bilinear')
-# ax.set_axis_off()
-# plt.imshow(wordcloud_discografia);
-# wordcloud_discografia.to_file("palvras_discografia.png")
