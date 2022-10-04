@@ -29,7 +29,7 @@ links = []
 for i in lyrics_hrefs:
     i = i.get('href')
     links.append(i)
-#print(links)
+
 for a in links:
     concat_link = 'https://www.vagalume.com.br' + a
     print(concat_link)
@@ -45,9 +45,8 @@ for a in links:
         a1 = a1.get_text(" ", strip=True)
         lyric_clear.append(a1)
     
-    lyrics.append(lyric_clear)    #print(musics_clear)
+    lyrics.append(lyric_clear)    
     
-# print(lyrics)
 #Tempo e popularidades(feitos à mão). Fonte: Youtube. O tempo está em segundos.
 time = [166,201,188,227,189,201,233,163,208,192,205,223,
         235,231,245,202,219,214,201,193,215,197,128,219,
@@ -64,7 +63,9 @@ popularity =[681149,542702,318115,444143,1030714,273518,1051068,499117,
              565418,565256,587206,654659,384597,187744,186875,85078,374652,
              229419,226696,94461,54902,79694,66802,72093,299712,50162,160477,
              157501,169283,106524,174380,143512,150704]
-# driver.quit()
+#Encerrar a busca
+driver.quit()
 
+#Criação do dataframe
 df = pd.DataFrame({'Music': musics_clear, 'Lyrics': lyrics, 'Time': time, 'Views': popularity})
 df.to_csv('supercombo2.csv', index=False, encoding='utf-8')
