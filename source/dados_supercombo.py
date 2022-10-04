@@ -48,7 +48,7 @@ grav = ["Gritaria","Elemess","Elemess","Lua Music","Sem gravadora","Sem gravador
 
 #Criação do DataFrame propriamente dito 
 df = pd.DataFrame({'Album': albums, 'Music': musics, 'Year': yearlaunching, 'Awards': premios, 'Recorders': grav})
-df.to_csv(r'C:/Users/maxjo/OneDrive/Documentos/GitHub/ProjetoLP-Supercombo/dataframes'+'\supercombo.csv', index=False, encoding='utf-8')
+df.to_csv('..\\dataframes\\supercombo.csv', index=False, encoding='utf-8')
 
 #Fechar a janela
 driver.quit()    

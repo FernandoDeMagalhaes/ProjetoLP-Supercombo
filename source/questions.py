@@ -1,4 +1,4 @@
-import os
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
@@ -25,8 +25,8 @@ def ignorar_caracteres_cercados(texto, char_abertura, char_fechamento):
     return novo_texto
 
 #Leitura de arquivo (deve ser necessário ver se funciona em outro PC)
-df1 = pd.read_csv(r'C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\dataframes\supercombo.csv')
-df2 = pd.read_csv(r'C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\dataframes\supercombo2.csv')
+df1 = pd.read_csv('..\\dataframes\\supercombo.csv')
+df2 = pd.read_csv('..\\dataframes\\supercombo2.csv')
 
 
 # CONJUNTO DE PERGUNTAS 1
@@ -272,7 +272,7 @@ fig, ax = plt.subplots(figsize=(10,6))
 ax.imshow(wordcloud_titulo_album, interpolation='bilinear')
 ax.set_axis_off()
 plt.imshow(wordcloud_titulo_album);
-wordcloud_titulo_album.to_file(r"C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\images"+"\palavras_titulos_albuns.png")
+wordcloud_titulo_album.to_file("..\\images\\palavras_titulos_albuns.png")
 
 
 # Palavras mais comuns nas letras em toda a discografia
@@ -341,7 +341,7 @@ fig, ax = plt.subplots(figsize=(10,6))
 ax.imshow(wordcloud_discografia, interpolation='bilinear')
 ax.set_axis_off()
 plt.imshow(wordcloud_discografia);
-wordcloud_discografia.to_file(r"C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\images"+"\palavras_discografia.png")
+wordcloud_discografia.to_file("..\\images\\palavras_discografia.png")
 
 # Palavras mais comuns nas letras por album
 
@@ -448,7 +448,7 @@ for i in df1['Album']:
     ax.imshow(wordcloud_album, interpolation='bilinear')
     ax.set_axis_off()
     plt.imshow(wordcloud_album);
-    wordcloud_album.to_file(r"C:\Users\maxjo\OneDrive\Documentos\GitHub\ProjetoLP-Supercombo\images"+"\palavras_album_" + str(n9) + ".png") 
+    wordcloud_album.to_file("..\\images\\palavras_album_" + str(n9) + ".png") 
     
     n9 += 1
 
