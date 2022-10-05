@@ -11,6 +11,8 @@ seu ano de lançamento; **'musics_supercombo.py'** é um outro arquivo Python, q
 temos a sua duração(em segundos), a sua popularidade(em contagem de visualizações no [Youtube](youtube.com)(em 30 de setembro de 2022), e sua letra.
 **'supercombo.csv'** e **'supercombo2.csv'** são arquivos csv's, gerados a partir de **'dados.supercombo.py'** e **'musics_supercombo.py'**, respectivamente. O primeiro
 csv,em cada linha sua, apresenta informações de um álbum, enquanto o segundo apresenta informações relevantes de uma música.
+A pasta dataframes contém todos os datframes com os dados utilizados.
+A pasta images é onde se encontram os arquivos de imagem das tag clouds, divididas entre palavras que mais aparecem nas músicas por álbum, palavras mais comuns em toda discografia e palavras mais utilizadas nos títulos dos álbuns.
 
 ***Nós recomendamos fortemente*** que abra esses arquivos .csv no LibreOffice, por exemplo, pois o Excel não os interpreta bem.
 
