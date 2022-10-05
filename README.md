@@ -7,12 +7,12 @@ feitas análises para responder certas perguntas utilizando bibliotecas do Pytho
 
 A pasta source contém todos os códigos pyhton que foram utilizados, seja para obter os dados, seja para fazer a visualização correta deles.
 Mais especificadamente: **'dados.supercombo.py'** é um arquivo Python que busca informações relativas aos álbuns de Supercombo: o seu nome, a suas músicas, o
-seu ano de lançamento; **'musics_supercombo.py'** é um outro arquivo Python, que por sua busca dados sobre suas músicas: além de seu nome,
+seu ano de lançamento; **'musics_supercombo.py'** é um outro arquivo Python, que por sua vez busca dados sobre suas músicas: além de seu nome,
 temos a sua duração(em segundos), a sua popularidade(em contagem de visualizações no [Youtube](youtube.com)(em 30 de setembro de 2022), e sua letra.
 **'supercombo.csv'** e **'supercombo2.csv'** são arquivos csv's, gerados a partir de **'dados.supercombo.py'** e **'musics_supercombo.py'**, respectivamente. O primeiro
 csv,em cada linha sua, apresenta informações de um álbum, enquanto o segundo apresenta informações relevantes de uma música.
 
-A pasta dataframes contém todos os datframes com os dados utilizados.
+A pasta dataframes contém todos os dataframes com os dados utilizados.
 
 A pasta images é onde se encontram os arquivos de imagem das tag clouds, divididas entre palavras que mais aparecem nas músicas por álbum, palavras mais comuns em toda discografia e palavras mais utilizadas nos títulos dos álbuns.
 
