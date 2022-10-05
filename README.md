@@ -14,6 +14,11 @@ csv,em cada linha sua, apresenta informações de um álbum, enquanto o segundo 
 A pasta dataframes contém todos os datframes com os dados utilizados.
 A pasta images é onde se encontram os arquivos de imagem das tag clouds, divididas entre palavras que mais aparecem nas músicas por álbum, palavras mais comuns em toda discografia e palavras mais utilizadas nos títulos dos álbuns.
 
+Para o grupo de perguntas 3, escolhemos as seguintes perguntas:
+.Qual é a gravadora mais comum entre os álbuns da banda
+.Qual a média de duração das músicas, em toda a discografia
+.Qual a média de duração das músicas por álbum
+
 ***Nós recomendamos fortemente*** que abra esses arquivos .csv no LibreOffice, por exemplo, pois o Excel não os interpreta bem.
 
 [Adicionar mais]
