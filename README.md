@@ -17,6 +17,7 @@ A pasta dataframes contém todos os datframes com os dados utilizados.
 A pasta images é onde se encontram os arquivos de imagem das tag clouds, divididas entre palavras que mais aparecem nas músicas por álbum, palavras mais comuns em toda discografia e palavras mais utilizadas nos títulos dos álbuns.
 
 Para o grupo de perguntas 3, escolhemos as seguintes perguntas:
+
 .Qual é a gravadora mais comum entre os álbuns da banda
 
 .Qual a média de duração das músicas, em toda a discografia
