@@ -347,7 +347,7 @@ remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
            'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
            'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','POR','MAIS','FAZ','PRO',
            'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
-           'ELA','QUER','COMO','QUANDO','MINHA','QUEM']
+           'ELA','QUER','COMO','QUANDO','MINHA','QUEM','AR']
 
 for i in remover:
     try:
@@ -565,12 +565,12 @@ for i in stringclearList:
     palavras = bigstring1.split()
     
     remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
-               'É','NÃO','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
-               'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
-               'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','POR','MAIS','FAZ','PRO',
-               'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
-               'ELA','QUER','COMO','QUANDO','MINHA','QUEM', 'OH', 'FOR', 'DEVE', 'TÁ', 'AÍ',
-               'TÃO', 'AAAAA', 'MIM', 'WAAAA', 'OOO', 'UOOO', 'AAAAAH', 'JÁ']
+                'É','NÃO','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
+                'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
+                'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','POR','MAIS','FAZ','PRO',
+                'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
+                'ELA','QUER','COMO','QUANDO','MINHA','QUEM', 'OH', 'FOR', 'DEVE', 'TÁ', 'AÍ',
+                'TÃO', 'AAAAA', 'MIM', 'WAAAA', 'OOO', 'UOOO', 'AAAAAH', 'JÁ']
 
     for i in remover:
         try:
@@ -613,6 +613,8 @@ for i in df1['Album']:
     
     n12 = n12 + 1
 
+print("Analisando os dataframes acima, percebe-se que o título do álbum não é tema recorrente, com exceção para o álbum 'Rogério'.")
+
 print("----" * 10)
 
 # Titulo das músicas são tema recorente nas letras?
@@ -636,7 +638,7 @@ for i in stringclear1:
     for j in remover:
         try:
             while True:
-               stringclear1[n13].remove(j)
+                stringclear1[n13].remove(j)
         except:
             pass
         
@@ -660,12 +662,12 @@ for i in stringclear2:
     stringclear2[n14] = stringclear2[n14].split()
     
     remover = ['A','E','O','DE','SE','QUE','EU','TE','DO','EM','ME','TA','OS','AS',
-               'É','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
-               'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
-               'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','MAIS','FAZ','PRO',
-               'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
-               'QUER','QUANDO','MINHA','QUEM', 'OH', 'FOR', 'DEVE', 'TÁ', 'AÍ',
-               'TÃO', 'AAAAA', 'MIM', 'WAAAA', 'OOO', 'UOOO', 'AAAAAH', 'JÁ']
+                'É','VO','TO','DA','SO','EI','AI','IR','PRA','OU','NO','UM','CÊ',
+                'VOCÊ','NA','HA','IA','COM','VI','Ó','SER','SEM','CON','SI','TU','MEU',
+                'TEM','SÓ','OI','LI','AA','DEI','VER','VAI','PAR','MAIS','FAZ','PRO',
+                'NOS','AH','TER','VOU','ERA','SEI','SOU','DOS','ESTA','DAR','MAS','DEIXA','ESSE',
+                'QUER','QUANDO','MINHA','QUEM', 'OH', 'FOR', 'DEVE', 'TÁ', 'AÍ',
+                'TÃO', 'AAAAA', 'MIM', 'WAAAA', 'OOO', 'UOOO', 'AAAAAH', 'JÁ']
 
     for j in remover:
         try:
@@ -697,10 +699,12 @@ for i in df2['Music']:
     
     n15 = n15 + 1
 
+print("Ao analisar os DataFrames acima, percebe-se que o título das músicas é tema recorrente nas letras.")
+
 print("----" * 10)
 
-#Conjunto de perguntas 3 - A primeira pergunta está na parte anterior
-#(Médias do tamanho das músicas por álbum)
+# Conjunto de perguntas 3 - A primeira pergunta está na parte anterior
+# (Médias do tamanho das músicas por álbum)
 
 #Média do tempo das músicas
 print("Média do tempo das músicas na discografia: ", round(df2['Time'].mean(),2),'\n')
