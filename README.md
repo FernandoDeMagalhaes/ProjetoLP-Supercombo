@@ -1,7 +1,7 @@
 # Discografia - Banda Supercombo 
 
 [Supercombo](https://www.supercomborock.com/) é uma banda brasileira de rock alternativo. Nesse projeto, foram buscados dados sobre suas músicas e  
-feitas análises para responder certas utilizando bibliotecas do Python.
+feitas análises para responder certas perguntas utilizando bibliotecas do Python.
 
 ## Descrição
 
