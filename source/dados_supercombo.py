@@ -4,6 +4,7 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
+import sys
 
 driver = webdriver.Chrome()
 
@@ -13,8 +14,11 @@ yearlaunching = [] #Consegue o ano de lançamento de certo álbum
 
 
 #Acesso ao site
-driver.get('https://www.vagalume.com.br/supercombo/discografia/')
-
+try:
+    driver.get('https://www.vagalume.com.br/supercombo/discografia/')
+except:
+    print('Tivemos problema com acesso ao site Vagalume. Encerrando programa.')
+    sys.exit()
 #Extração propriamente dita
 content = driver.page_source
 soup = BeautifulSoup(content)

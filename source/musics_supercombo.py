@@ -1,5 +1,5 @@
 #Web scrapping para obter informações das músicas
-
+import sys
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
@@ -33,7 +33,11 @@ for i in lyrics_hrefs:
 for a in links:
     concat_link = 'https://www.vagalume.com.br' + a
     print(concat_link)
-    driver.get(concat_link)
+    try:
+        driver.get(concat_link)
+    except:
+        print("Houve problema no acesso ao site: " + concat_link + ". Encerrando o programa." )
+        sys.exit()
     content = driver.page_source
     time.sleep(1)
     soup = BeautifulSoup(content)
