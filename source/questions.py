@@ -104,8 +104,8 @@ def longa_curta_album(df1,df2):
         print("Média de tempo de música por álbum: ",round(df_r_time_album['Tempo'].mean(),2),"\n \n")
     
         #Seaborn plot
+        sns.set(font_scale=1)
         sns.barplot(x="Tempo", y="Música", data=df_r_time_album.sort_values(by = 'Tempo', ascending = False), color="b")
-        # g.ax.axline(xy1=(10, 2), slope=.2, color="b", dashes=(5, 2))
         plt.savefig("..\\images\\time_album" + str(n2) + ".png", dpi = 300, bbox_inches = 'tight')
         
         n2 += 1
@@ -114,7 +114,7 @@ def longa_curta_album(df1,df2):
 def popular_inpopular_album(df1,df2):
     
     """
-    Prints the 3 most popular and 3 least popular songs from each album on the console.
+    Prints the 3 most popular and 3 least popular songs from each album on the console. Generates a seaborn plot for each album in descending order by number of views.
 
     :param df1: pandas.core.frame.DataFrame
     :param df2: pandas.core.frame.DataFrame
@@ -164,22 +164,26 @@ def popular_inpopular_album(df1,df2):
         
     n2 = 0
     for i in df1['Album']:
-        df_r_viw_album = pd.DataFrame({"Música": musicList[n2], "Visualizações": viwList[n2]})
+        df_r_viw_album = pd.DataFrame({"Music": musicList[n2], "Views": viwList[n2]})
         
         print("Album: ", i, "\n")
-        print("Mais vistas: \n", df_r_viw_album.sort_values(by = 'Visualizações', ascending = False).head(3), "\n", sep="")
-        print("Menos vistas: \n", df_r_viw_album.sort_values(by = 'Visualizações', ascending = True).head(3), sep="")
+        print("Mais vistas: \n", df_r_viw_album.sort_values(by = 'Views', ascending = False).head(3), "\n", sep="")
+        print("Menos vistas: \n", df_r_viw_album.sort_values(by = 'Views', ascending = True).head(3), sep="")
         print("\n\n")
         
-        n2 += 1
+        #Seaborn plot
+        sns.set(font_scale=1)
+        sns.barplot(x='Views', y='Music', data=df_r_viw_album.sort_values(by = 'Views', ascending = False), color="b")
+        plt.savefig("..\\images\\popularity_by_album_" + str(n2) + ".png", dpi = 300, bbox_inches = 'tight')
 
+        n2 += 1
 
 # Mais longa e mais curta de todas
 
 def longa_curta(df1,df2):
     
     """
-    Prints the longest and shortest song in the entire discography on the console.
+    Prints the longest and shortest song in the entire discography on the console, and creates a seaborn plot,'time_music_ranking.png', with the musics in descending order by time.
 
     :param df1: pandas.core.frame.DataFrame
     :param df2: pandas.core.frame.DataFrame
@@ -211,14 +215,18 @@ def longa_curta(df1,df2):
         n2 += 1
         
     print("\n")
-
+    
+    #Seaborn plot
+    sns.set(font_scale=0.08)
+    sns.barplot(x='Time', y='Music', data=df2.sort_values(by = 'Time', ascending = False), color="b")
+    plt.savefig("..\\images\\time_music_ranking.png", dpi = 300, bbox_inches = 'tight')
 
 # Mais vista e menos vista de todas
 
 def popular_inpopular(df1,df2):
     
     """
-    Prints on the console the most popular and least popular song of the entire discography.
+    Prints on the console the most popular and least popular song of the entire discography, and creates a seaborn plot,'music_views_ranking.png' with the musics in descending order by number of the views.
 
     :param df1: pandas.core.frame.DataFrame
     :param df2: pandas.core.frame.DataFrame
@@ -241,25 +249,29 @@ def popular_inpopular(df1,df2):
                 albuns.append(df1['Album'][n1])
             n1 += 1
 
-    df_viw_album = pd.DataFrame({'Album': albuns, 'Musica': musics, 'Visualisações': viws})
+    df_viw_album = pd.DataFrame({'Album': albuns, 'Music': musics, 'Views': viws})
 
     n2 = 0
-    for i in df_viw_album['Visualisações']:
-        if i == max(df_viw_album['Visualisações']):
-            print("Mais Vista: ", df_viw_album['Musica'][n2])
-        if i == min(df_viw_album['Visualisações']):
-            print("Menos Vista: ", df_viw_album['Musica'][n2])
+    for i in df_viw_album['Views']:
+        if i == max(df_viw_album['Views']):
+            print("Mais Vista: ", df_viw_album['Music'][n2])
+        if i == min(df_viw_album['Views']):
+            print("Menos Vista: ", df_viw_album['Music'][n2])
         n2 += 1
 
     print("\n")
-
+    
+    #Seaborn plot
+    sns.set(font_scale=0.08)
+    sns.barplot(x='Views', y='Music', data=df2.sort_values(by = 'Views', ascending = False), color="b")
+    plt.savefig("..\\images\\music_views_ranking.png", dpi = 300, bbox_inches = 'tight')
 
 # Album mais premiado
 
 def premiados(df1,df2):
     
     """
-    Prints the band's most awarded album on the console.
+    Prints the band's most awarded album on the console. Generates a seaborn plot,'awards_ranking', with the data.
 
     :param df1: pandas.core.frame.DataFrame
     :param df2: pandas.core.frame.DataFrame
@@ -273,6 +285,11 @@ def premiados(df1,df2):
         n += 1
     
     print("\n")
+    
+    #Seaborn plot
+    sns.set(font_scale=1)
+    sns.barplot(x='Awards', y='Album', data=df1.sort_values(by = 'Awards', ascending = False), color="b")
+    plt.savefig("..\\images\\awards_ranking.png", dpi = 300, bbox_inches = 'tight')
 
 
 # Existe relação entre a duração e a popularidade?
@@ -332,7 +349,8 @@ def relacao_tempo_popularidade(df1,df2):
     print("O coeficiente de relação é: ", r , " Portanto não são relacionados \n")
     
     #Seaborn plot
-    g = sns.lmplot(data=df1, x="Time", y="Views")
+    sns.set(font_scale=0.2)
+    g = sns.lmplot(data=df2, x="Time", y="Views")
     g.ax.axline(xy1=(10, 2), slope=.2, color="b", dashes=(5, 2))
     plt.savefig("..\\images\\mean_time.png",dpi = 300, bbox_inches = 'tight')
 
