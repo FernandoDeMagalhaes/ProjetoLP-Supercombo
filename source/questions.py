@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import math
+import seaborn as sns
 
 # Função pra tirar texto entre parênteses
 def ignorar_caracteres_cercados(text, char_open, char_close):
@@ -101,10 +102,13 @@ def longa_curta_album(df1,df2):
         
         #Média do tempo das músicas por álbum:
         print("Média de tempo de música por álbum: ",round(df_r_time_album['Tempo'].mean(),2),"\n \n")
+    
+        #Seaborn plot
+        sns.barplot(x="Tempo", y="Música", data=df_r_time_album.sort_values(by = 'Tempo', ascending = False), color="b")
+        # g.ax.axline(xy1=(10, 2), slope=.2, color="b", dashes=(5, 2))
+        plt.savefig("..\\images\\time_album" + str(n2) + ".png", dpi = 300, bbox_inches = 'tight')
         
         n2 += 1
-
-
 # Mais ouvidas e menos ouvidas por álbum:
 
 def popular_inpopular_album(df1,df2):
@@ -276,7 +280,7 @@ def premiados(df1,df2):
 def relacao_tempo_popularidade(df1,df2):
     
     """
-    Prints on the console the Linear Correlation Coefficient between the size of the song and its popularity.
+    Prints on the console the Linear Correlation Coefficient between the size of the song and its popularity and creates a seaborn plot with the data.
 
     :param df1: pandas.core.frame.DataFrame
     :param df2: pandas.core.frame.DataFrame
@@ -326,8 +330,13 @@ def relacao_tempo_popularidade(df1,df2):
     r = sum_xy / math.sqrt(sum_x * sum_y)
         
     print("O coeficiente de relação é: ", r , " Portanto não são relacionados \n")
+    
+    #Seaborn plot
+    g = sns.lmplot(data=df1, x="Time", y="Views")
+    g.ax.axline(xy1=(10, 2), slope=.2, color="b", dashes=(5, 2))
+    plt.savefig("..\\images\\mean_time.png",dpi = 300, bbox_inches = 'tight')
 
-
+    
 # CONJUNTO DE PERGUNTAS 2
 
 # Palavras mais repetidas nos titulos dos albums
