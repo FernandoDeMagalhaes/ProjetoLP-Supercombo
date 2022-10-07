@@ -10,7 +10,7 @@ Mais especificadamente: **'dados.supercombo.py'** é um arquivo Python que busca
 seu ano de lançamento; **'musics_supercombo.py'** é um outro arquivo Python, que por sua vez busca dados sobre suas músicas: além de seu nome,
 temos a sua duração(em segundos), a sua popularidade(em contagem de visualizações no [Youtube](youtube.com)(em 30 de setembro de 2022), e sua letra.
 
-A pasta dataframes contém os dataframes, **'supercombo.csv'** e **'supercombo2.csv'** que são arquivos csv's, gerados a partir de **'dados.supercombo.py'** e **'musics_supercombo.py'**, respectivamente. O primeiro
+A pasta dataframes contém os arquivos csv **'supercombo.csv'** e **'supercombo2.csv'** , gerados a partir de **'dados.supercombo.py'** e **'musics_supercombo.py'**, respectivamente. O primeiro
 csv,em cada linha sua, apresenta informações de um álbum, enquanto o segundo apresenta informações relevantes de uma música.
 
 A pasta images é onde se encontram os arquivos de imagem das tag clouds, divididas entre palavras que mais aparecem nas músicas por álbum, palavras mais comuns em toda discografia e palavras mais utilizadas nos títulos dos álbuns.
