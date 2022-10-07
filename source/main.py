@@ -27,28 +27,28 @@ q.premiados(df1, df2)
 q.relacao_tempo_popularidade(df1, df2)
 
 
-# GRUPO DE QUESTÕES 2 EM ORDEM
+# # GRUPO DE QUESTÕES 2 EM ORDEM
 
-q.palavras_titulos_albuns(df1, df2)
+# q.palavras_titulos_albuns(df1, df2)
 
-q.palavras_titulos_musicas(df1, df2)
+# q.palavras_titulos_musicas(df1, df2)
 
-q.palavras_letras_album(df1, df2)
+# q.palavras_letras_album(df1, df2)
 
-q.palavras_letras(df1, df2)
+# q.palavras_letras(df1, df2)
 
-q.palavras_album_tema(df1, df2)
+# q.palavras_album_tema(df1, df2)
 
-q.palavras_musica_tema(df1, df2)
+# q.palavras_musica_tema(df1, df2)
 
 
-# GRUPO DE QUESTÕES 3
+# # GRUPO DE QUESTÕES 3
 
-# Média de tempo das músicas por album 
-# (Respondida junto a questão 1.1)
+# # Média de tempo das músicas por album 
+# # (Respondida junto a questão 1.1)
 
-# Média de tempo das músicas em toda discografia
-q.media_tempos(df1, df2)
+# # Média de tempo das músicas em toda discografia
+# q.media_tempos(df1, df2)
 
-# Gravadora mais comum
-q.gravadora_comum(df1, df2)
+# # Gravadora mais comum
+# q.gravadora_comum(df1, df2)

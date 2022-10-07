@@ -93,20 +93,20 @@ def longa_curta_album(df1,df2):
         
     n2 = 0
     for i in df1['Album']:
-        df_r_time_album = pd.DataFrame({"Música": musicList[n2], "Tempo": timesList[n2]})
+        df_r_time_album = pd.DataFrame({"Music": musicList[n2], "Time": timesList[n2]})
         
         print("Album: ", i, "\n")
-        print("Mais longas: \n", df_r_time_album.sort_values(by = 'Tempo', ascending = False).head(3), "\n", sep="")
-        print("Mais curtas: \n", df_r_time_album.sort_values(by = 'Tempo', ascending = True).head(3), sep="")
+        print("Mais longas: \n", df_r_time_album.sort_values(by = 'Time', ascending = False).head(3), "\n", sep="")
+        print("Mais curtas: \n", df_r_time_album.sort_values(by = 'Time', ascending = True).head(3), sep="")
         print("\n\n")
         
         #Média do tempo das músicas por álbum:
-        print("Média de tempo de música por álbum: ",round(df_r_time_album['Tempo'].mean(),2),"\n \n")
+        print("Média de tempo de música por álbum: ",round(df_r_time_album['Time'].mean(),2),"\n \n")
     
         #Seaborn plot
-        sns.set(font_scale=1)
-        sns.barplot(x="Tempo", y="Música", data=df_r_time_album.sort_values(by = 'Tempo', ascending = False), color="b")
-        plt.savefig("..\\images\\time_album" + str(n2) + ".png", dpi = 300, bbox_inches = 'tight')
+        
+        sns.barplot(x="Time", y="Music", data=df_r_time_album.sort_values(by = 'Time', ascending = False), color="b")
+        plt.savefig("..\\images\\time_byalbum" + str(n2) + ".png", dpi = 300, bbox_inches = 'tight')
         
         n2 += 1
 # Mais ouvidas e menos ouvidas por álbum:
@@ -172,7 +172,7 @@ def popular_inpopular_album(df1,df2):
         print("\n\n")
         
         #Seaborn plot
-        sns.set(font_scale=1)
+        
         sns.barplot(x='Views', y='Music', data=df_r_viw_album.sort_values(by = 'Views', ascending = False), color="b")
         plt.savefig("..\\images\\popularity_by_album_" + str(n2) + ".png", dpi = 300, bbox_inches = 'tight')
 
@@ -183,7 +183,7 @@ def popular_inpopular_album(df1,df2):
 def longa_curta(df1,df2):
     
     """
-    Prints the longest and shortest song in the entire discography on the console, and creates a seaborn plot,'time_music_ranking.png', with the musics in descending order by time.
+    Prints the longest and shortest song in the entire discography on the console, and creates two seaborns plots, one with the 10 longest musics and other with the 10 shortest.
 
     :param df1: pandas.core.frame.DataFrame
     :param df2: pandas.core.frame.DataFrame
@@ -217,16 +217,19 @@ def longa_curta(df1,df2):
     print("\n")
     
     #Seaborn plot
-    sns.set(font_scale=0.08)
-    sns.barplot(x='Time', y='Music', data=df2.sort_values(by = 'Time', ascending = False), color="b")
-    plt.savefig("..\\images\\time_music_ranking.png", dpi = 300, bbox_inches = 'tight')
-
+    
+    sns.barplot(x='Time', y='Music', data=df2.head(10).sort_values(by = 'Time', ascending = False), color="b")
+    plt.savefig("..\\images\\time_music_headranking.png", dpi = 300, bbox_inches = 'tight')
+    
+    sns.barplot(x='Time', y='Music', data=df2.tail(10).sort_values(by = 'Time', ascending = False), color="b")
+    plt.savefig("..\\images\\time_music_tailranking.png", dpi = 300, bbox_inches = 'tight')
+    
 # Mais vista e menos vista de todas
 
 def popular_inpopular(df1,df2):
     
     """
-    Prints on the console the most popular and least popular song of the entire discography, and creates a seaborn plot,'music_views_ranking.png' with the musics in descending order by number of the views.
+    Prints on the console the most popular and least popular song of the entire discography, and creates 2 seaborns plots,one with the 10 more famous, and other with the 10 less famous musics.
 
     :param df1: pandas.core.frame.DataFrame
     :param df2: pandas.core.frame.DataFrame
@@ -262,9 +265,12 @@ def popular_inpopular(df1,df2):
     print("\n")
     
     #Seaborn plot
-    sns.set(font_scale=0.08)
-    sns.barplot(x='Views', y='Music', data=df2.sort_values(by = 'Views', ascending = False), color="b")
-    plt.savefig("..\\images\\music_views_ranking.png", dpi = 300, bbox_inches = 'tight')
+    
+    sns.barplot(x='Views', y='Music', data=df2.head(10).sort_values(by = 'Views', ascending = False), color="b")
+    plt.savefig("..\\images\\music_views_headranking.png", dpi = 300, bbox_inches = 'tight')
+    
+    sns.barplot(x='Views', y='Music', data=df2.tail(10).sort_values(by = 'Views', ascending = False), color="b")
+    plt.savefig("..\\images\\music_views_headranking.png", dpi = 300, bbox_inches = 'tight')
 
 # Album mais premiado
 
@@ -287,7 +293,7 @@ def premiados(df1,df2):
     print("\n")
     
     #Seaborn plot
-    sns.set(font_scale=1)
+    
     sns.barplot(x='Awards', y='Album', data=df1.sort_values(by = 'Awards', ascending = False), color="b")
     plt.savefig("..\\images\\awards_ranking.png", dpi = 300, bbox_inches = 'tight')
 
@@ -349,7 +355,7 @@ def relacao_tempo_popularidade(df1,df2):
     print("O coeficiente de relação é: ", r , " Portanto não são relacionados \n")
     
     #Seaborn plot
-    sns.set(font_scale=0.2)
+    
     g = sns.lmplot(data=df2, x="Time", y="Views")
     g.ax.axline(xy1=(10, 2), slope=.2, color="b", dashes=(5, 2))
     plt.savefig("..\\images\\mean_time.png",dpi = 300, bbox_inches = 'tight')
