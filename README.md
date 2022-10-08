@@ -13,7 +13,7 @@ temos a sua duração(em segundos), a sua popularidade(em contagem de visualiza�
 A pasta dataframes contém os arquivos csv **'supercombo.csv'** e **'supercombo2.csv'** , gerados a partir de **'dados.supercombo.py'** e **'musics_supercombo.py'**, respectivamente. O primeiro
 csv,em cada linha sua, apresenta informações de um álbum, enquanto o segundo apresenta informações relevantes de uma música.
 
-A pasta images contém os arquivos de imagem das tag clouds e seaborn, divididas entre palavras que mais aparecem nas músicas por álbum, palavras mais comuns em toda discografia e palavras mais utilizadas nos títulos dos álbuns.Os arquivos que começam com 'palavra' são as imagens da wordcloud.As outras imagens são os gráficos gerados pelo seaborn.
+A pasta images contém os arquivos de imagem das tag clouds e seaborn, divididas entre palavras que mais aparecem nas músicas por álbum, palavras mais comuns em toda discografia e palavras mais utilizadas nos títulos dos álbuns.Os arquivos que começam com 'palavra' são as imagens da wordcloud.Os outros arquivos são os gráficos gerados pelo seaborn.
 
 Para o grupo de perguntas 3, escolhemos as seguintes perguntas:
 
